@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>피싱-디펜더 | 충청북도경찰청</title>
+    
+    <!-- 구글 애널리틱스 (GA4) 연동 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPW04QS7GN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());        
+        gtag('config', 'G-MPW04QS7GN', { 'page_title': '피싱-디펜더' });
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; -webkit-tap-highlight-color: transparent; }
+        .bg-police-dark { background-color: #1a237e; }
+        .text-police-dark { color: #1a237e; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .accordion-content.open {
+            max-height: 500px; 
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .chevron { transition: transform 0.3s ease; }
+        .chevron.rotate { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-gray-100">
+<div class="max-w-md mx-auto w-full bg-gray-50 min-h-screen shadow-lg flex flex-col relative overflow-x-hidden">
+<header class="bg-police-dark text-white shadow-md z-20 sticky top-0" style="padding: 1rem; padding-top: max(1rem, env(safe-area-inset-top));">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <button onclick="location.href='../'" class="p-1 -ml-1 rounded-full hover:bg-blue-900 transition flex-shrink-0">
+                <i class="fa-solid fa-arrow-left text-xl"></i>
+            </button>
+            <img src="../logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Emblem_of_the_Korean_National_Police_Agency.svg/150px-Emblem_of_the_Korean_National_Police_Agency.svg.png'" class="w-9 h-9 object-contain rounded-full bg-white p-0.5 shadow-sm">
+            <div class="flex flex-col justify-center">
+                <h1 class="font-black text-lg leading-tight tracking-tight">피싱-디펜더</h1>
+                <p class="text-[10px] text-gray-300 font-medium">충청북도경찰청 스마트 치안센터</p>
+            </div>
+        </div>
+        <button onclick="shareGuide()" class="text-white hover:text-blue-200 transition">
+            <i class="fa-solid fa-share-nodes text-xl"></i>
+        </button>
+    </div>
+</header>
+
+<div class="bg-red-600 text-white p-5 text-center shadow-sm relative overflow-hidden">
+    <i class="fa-solid fa-shield-virus absolute -right-4 -top-4 text-8xl text-black opacity-10"></i>
+    <h2 class="text-xl font-black mb-1 tracking-tight">전기통신금융사기 대응가이드</h2>
+    <p class="text-xs font-medium text-red-100 mb-3">피해가 의심된다면 즉시 골든타임 조치를 실행하세요.</p>
+    
+    <!-- 전화 신고 버튼 -->
+    <div class="flex flex-col gap-2.5">
+        <!-- 1394 통합대응단 신고 버튼 -->
+        <a href="tel:1394" class="bg-white/20 rounded-lg p-2.5 flex items-center justify-center gap-2 font-bold text-sm hover:bg-white/30 transition active:scale-95">
+            <i class="fa-solid fa-phone-volume animate-pulse flex-shrink-0"></i>
+            <span class="tracking-tight">전기통신금융사기 통합대응단 <b class="text-yellow-300 text-lg ml-0.5">1394</b></span>
+        </a>
+
+        <!-- 112 경찰 신고 버튼 -->
+        <a href="tel:112" class="bg-white/20 rounded-lg p-2.5 flex items-center justify-center gap-2 font-bold text-sm hover:bg-white/30 transition active:scale-95">
+            <i class="fa-solid fa-phone-volume animate-pulse flex-shrink-0"></i>
+            <span class="tracking-tight">피해접수 및 지급정지 즉시 신고 <b class="text-yellow-300 text-lg ml-0.5">112</b></span>
+        </a>
+    </div>
+</div>
+
+        <main class="flex-1 overflow-y-auto p-4 space-y-3 pb-12 no-scrollbar" id="accordionContainer">
+        </main>
+
+        <footer class="bg-white p-5 text-center border-t border-gray-200 z-10">
+            <div class="flex items-center justify-center gap-2 text-police-dark font-black mb-2">
+                <i class="fa-solid fa-user-lock"></i> 금융사기 예방은 작은 실천에서 시작됩니다!
+            </div>
+            <p class="text-[11px] text-gray-500 font-medium break-keep">
+                의심스러운 연락이나 앱 설치 요구는 즉시 거절하고, <br>피해 발생 시 <b>112</b> 또는 가까운 경찰서로 신고하세요.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const DEFENSE_STEPS = [
+            {
+                id: 'step1',
+                icon: 'fa-virus-slash text-green-500',
+                title: '모바일 백신 검사',
+                desc: '구글 플레이스토어 또는 애플 앱스토어에서 <b>알약</b> 또는 <b>V3 모바일 플러스</b>를 검색하여 즉시 설치 및 검사하세요.',
+                warning: '',
+                buttons: [
+                    { name: 'V3 모바일 (Play스토어)', icon: 'fa-brands fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.ahnlab.v3mobileplus', color: 'bg-green-600' },
+                    { name: 'V3 모바일 (App스토어)', icon: 'fa-brands fa-apple', link: 'https://apps.apple.com/kr/app/v3-mobile-plus/id1481938658', color: 'bg-gray-800' }
+                ]
+            },
+            {
+                id: 'step2',
+                icon: 'fa-mobile-screen text-blue-500',
+                title: '명의도용방지 서비스',
+                desc: '내 명의로 각종 통신서비스(알뜰폰 등)에 가입하지 못하도록 막는 잠금장치입니다.<br><br>• <b>Msafer (엠세이퍼):</b> 웹사이트에서 신청 가능 (인증서 필요)<br>• <b>PASS 앱:</b> 첫 화면 → 명의도용방지서비스<br>• 통신사 직영점 방문 신청 가능',
+                warning: '※ 본인 명의 휴대전화 신규 개통 시 해제 필요',
+                buttons: [
+                    { name: '엠세이퍼 (웹사이트)', icon: 'fa-solid fa-globe', link: 'https://www.msafer.or.kr/', color: 'bg-blue-600' },
+                    { name: 'PASS (Play스토어)', icon: 'fa-brands fa-google-play', link: 'https://play.google.com/store/search?q=PASS&c=apps', color: 'bg-green-600' },
+                    { name: 'PASS (App스토어)', icon: 'fa-brands fa-apple', link: 'https://apps.apple.com/kr/iphone/search?term=pass', color: 'bg-gray-800' }
+                ]
+            },
+            {
+                id: 'step3',
+                icon: 'fa-triangle-exclamation text-red-500',
+                title: '개인정보 노출자 사고 예방 시스템',
+                desc: '금융감독원 또는 은행에 노출 사실을 전파하면, 신청인 명의의 신규 계좌 개설, 대출, 신용카드 발급 등 금융거래가 차단됩니다.<br><br>• 은행 방문 신청<br>• 금융감독원 파인(FINE) 사이트 신청<br>• 금융감독원 콜센터 1332',
+                warning: '',
+                buttons: [
+                    { name: '금감원 예방시스템 접속', icon: 'fa-solid fa-shield-halved', link: 'https://pd.fss.or.kr/', color: 'bg-police-dark' },
+                    { name: '1332 콜센터 전화연결', icon: 'fa-solid fa-phone', link: 'tel:1332', color: 'bg-red-600', isCall: true }
+                ]
+            },
+            {
+                id: 'step4',
+                icon: 'fa-ban text-orange-500',
+                title: '여신거래 안심차단 서비스',
+                desc: '본인이 원하지 않는 여신거래(신용대출, 카드론, 신용카드 발급 등)로 피해를 입지 않도록 사전 차단하는 서비스입니다.<br><br>• 거래 중인 <b>은행 방문</b> 또는 <b>은행 모바일 앱</b>을 통해 신청 가능합니다.',
+                warning: '※ 단, 차단 해제 시에는 반드시 은행 방문 필수!',
+                buttons: []
+            },
+            {
+                id: 'step5',
+                icon: 'fa-building-columns text-indigo-500',
+                title: '비대면 계좌개설 차단서비스 신청',
+                desc: '전 금융권의 수시입출식 계좌(입출금통장 등) 비대면 개설을 사전에 일괄 차단할 수 있습니다.<br><br>• 은행 방문 또는 모바일 앱 신청<br>• <b>금융결제원(어카운트인포)</b> 앱 첫 화면 → 내 금융 안심차단 → 비대면 계좌개설 안심차단',
+                warning: '',
+                buttons: [
+                    { name: '어카운트인포 (웹 접속)', icon: 'fa-solid fa-globe', link: 'https://www.payinfo.or.kr/account.html', color: 'bg-purple-600' },
+                    { name: '어카운트인포 (Play스토어)', icon: 'fa-brands fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.kftc.payinfo.android', color: 'bg-green-600' },
+                    { name: '어카운트인포 (App스토어)', icon: 'fa-brands fa-apple', link: 'https://apps.apple.com/kr/app/%EC%96%B4%EC%B9%B4%EC%9A%B4%ED%8A%B8%EC%9D%B8%ED%8F%AC-%EA%B3%84%EC%A2%8C%EC%A0%95%EB%B3%B4%ED%86%B5%ED%95%A9%EA%B4%80%EB%A6%AC/id1225117985', color: 'bg-gray-800' }
+                ]
+            },
+            {
+                id: 'step6',
+                icon: 'fa-id-card text-teal-600',
+                title: '신분증, 인증서 재발급',
+                desc: '발급일자 변경을 통해 기존에 유출된 신분증의 효력을 무력화합니다.<br><br>• <b>주민등록증:</b> 주민센터 또는 정부24 신청<br>• <b>운전면허증:</b> 경찰서, 운전면허시험장 신청<br>• <b>여권:</b> 영사콜센터, 충북도청, 서원구청 등 신청',
+                warning: '',
+                buttons: [
+                    { name: '정부24 (주민증 재발급)', icon: 'fa-solid fa-landmark-dome', link: 'https://www.gov.kr/', color: 'bg-teal-600' },
+                    { name: '운전면허증 재발급', icon: 'fa-solid fa-car', link: 'https://www.safedriving.or.kr/', color: 'bg-teal-700' }
+                ]
+            },
+            {
+                id: 'step7',
+                icon: 'fa-magnifying-glass-chart text-purple-500',
+                title: '명의도용 계좌·카드·대출 조회',
+                desc: '나도 모르게 개설된 예금, 카드, 대출 상세 내역을 한눈에 확인합니다.<br><br>• 계좌정보통합관리서비스 (어카운트인포)<br>• 내계좌한눈에 / 내카드한눈에 / 금융정보조회 탭 활용',
+                warning: '',
+                buttons: [
+                    { name: '어카운트인포 (웹 접속)', icon: 'fa-solid fa-globe', link: 'https://www.payinfo.or.kr/account.html', color: 'bg-purple-600' },
+                    { name: '어카운트인포 (Play스토어)', icon: 'fa-brands fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.kftc.payinfo.android', color: 'bg-green-600' },
+                    { name: '어카운트인포 (App스토어)', icon: 'fa-brands fa-apple', link: 'https://apps.apple.com/kr/app/%EC%96%B4%EC%B9%B4%EC%9A%B4%ED%8A%B8%EC%9D%B8%ED%8F%AC-%EA%B3%84%EC%A2%8C%EC%A0%95%EB%B3%B4%ED%86%B5%ED%95%A9%EA%B4%80%EB%A6%AC/id1225117985', color: 'bg-gray-800' }
+                ]
+            },
+            {
+                id: 'step8',
+                icon: 'fa-user-check text-slate-600',
+                title: '본인확인 내역 조회',
+                desc: '정보주체 권리행사를 통해 본인확인 내역을 조회하고, 가입하지 않은 의심스러운 사이트의 회원 탈퇴를 일괄 요청할 수 있습니다.<br><br>• <b>프라이버시 클린서비스(개인정보 포털)</b> 접속 → 개인서비스 → 정보주체 권리행사 → 본인확인 내역 조회 및 가입하지 않은 사이트 회원 탈퇴 요청',
+                warning: '',
+                buttons: [
+                    { name: '프라이버시 클린서비스', icon: 'fa-solid fa-fingerprint', link: 'https://www.privacy.go.kr/', color: 'bg-slate-700' }
+                ]
+            },
+            {
+                id: 'step9',
+                icon: 'fa-comment-dots text-yellow-500',
+                title: '스미싱·악성 URL 실시간 검사',
+                desc: '수신한 문자메시지나 메신저의 의심스러운 URL 주소를 복사하여 KISA(한국인터넷진흥원) 보호나라 카카오톡 챗봇에게 전송하면, 실시간으로 악성 여부(스미싱, 악성 앱 설치 유도 등)를 분석하여 판별해 줍니다.<br><br>• <b>KISA 보호나라 채널</b> 접속 → 채팅방 이동 → 복사한 의심 URL 붙여넣기 및 검사 결과 확인',
+                warning: '※ 주의: 문자메시지에 포함된 의심 URL은 절대 직접 클릭(터치)하지 마시고, 텍스트만 길게 눌러 복사하시기 바랍니다.',
+                buttons: [
+                    { name: '스미싱 확인 서비스란?', icon: 'fa-solid fa-circle-info', link: 'https://www.boho.or.kr/kr/subPage.do?menuNo=205116', color: 'bg-slate-600' },
+                    { name: '카카오톡 실시간 검사', icon: 'fa-solid fa-comment', link: 'https://pf.kakao.com/_xnJVxoxj/chat', color: 'bg-yellow-500 text-slate-900' }
+                ]
+            }
+        ];
+
+        const container = document.getElementById('accordionContainer');
+
+        DEFENSE_STEPS.forEach((step, index) => {
+            let buttonsHtml = '';
+            if (step.buttons && step.buttons.length > 0) {
+                buttonsHtml = '<div class="mt-4 flex flex-col gap-2">';
+                step.buttons.forEach(btn => {
+                    
+                    const targetAttr = btn.link.startsWith('tel:') ? '' : 'target="_blank"';
+                    
+                    const animationClass = btn.link.startsWith('tel:') ? 'animate-pulse' : '';
+
+                    buttonsHtml += `
+                        <a href="${btn.link}" ${targetAttr} rel="noopener noreferrer" class="${btn.color} text-white text-sm font-bold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-90 active:scale-95 transition ${animationClass}">
+                            <i class="${btn.icon}"></i> ${btn.name}
+                        </a>
+                    `;
+                });
+                buttonsHtml += '</div>';
+            }
+
+            let warningHtml = '';
+            if (step.warning) {
+                warningHtml = `<p class="mt-3 text-[12px] font-bold text-red-500 bg-red-50 p-2 rounded border border-red-100">${step.warning}</p>`;
+            }
+
+            const cardHtml = `
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <button class="w-full px-4 py-3.5 flex items-center justify-between bg-white focus:outline-none active:bg-gray-50 transition" onclick="toggleAccordion('${step.id}')">
+                        <div class="flex items-center gap-3 text-left">
+                            <div class="w-8 h-8 rounded-full bg-gray-50 border flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid ${step.icon}"></i>
+                            </div>
+                            <span class="font-black text-[15px] text-gray-800 tracking-tight">${index + 1}. ${step.title}</span>
+                        </div>
+                        <i id="icon-${step.id}" class="fa-solid fa-chevron-down text-gray-400 chevron text-sm"></i>
+                    </button>
+                    <div id="content-${step.id}" class="accordion-content bg-gray-50 border-t border-gray-100 px-4 text-sm text-gray-600 leading-relaxed font-medium break-keep">
+                        ${step.desc}
+                        ${warningHtml}
+                        ${buttonsHtml}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHtml;
+        });
+
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.classList.remove('rotate');
+            } else {
+                content.classList.add('open');
+                icon.classList.add('rotate');
+            }
+        }
+        
+        setTimeout(() => { toggleAccordion('step1'); }, 100);
+
+        function shareGuide() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '피싱-디펜더 가이드',
+                    text: '전기통신금융사기 피해 의심 시 즉시 조치해야 할 골든타임 8대 대응 방법을 확인하세요.',
+                    url: window.location.href
+                }).catch(err => console.log('공유 취소됨'));
+            } else {
+                alert('해당 링크를 복사하여 공유해주세요.\n' + window.location.href);
+            }
+        }
+    </script>
+</body>
+</html>
