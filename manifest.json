@@ -1,6 +1,6 @@
 {
-  "name": "충북경찰청 충북 피싱 안심ON",
-  "short_name": "충북 피싱 안심ON",
+  "name": "충북경찰청 충북 피싱안심ON",
+  "short_name": "충북 피싱안심ON",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
