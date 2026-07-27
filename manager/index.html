@@ -129,7 +129,20 @@
         // [작성 구역] 피싱 소식지 데이터
         // ==========================================
         // type: '긴급'(빨간색), '알림'(파란색), '정책'(초록색)
-        const NEWS_LETTERS = [           
+        const NEWS_LETTERS = [    
+              {
+              type: '긴급',
+              title: '🚨 꼭 읽어보세요! 보이스피싱 사기 범죄 주의보',
+              date: '2026.07.27',
+              desc: `최근 아래와 같은 사기 피해가 지속 발생하고 있습니다. <br><b>모르는 번호로 걸려 온 황당한 내용의 전화는 즉시 끊어주시기 바랍니다.</b> <br><br>1. <b>보이스피싱 사기</b>: 등기 반송, 범죄 연루, 카드 발급을 빙자한 금전 및 정보 요구<br>
+                     2. <b>투자 리딩 사기</b>: 단기 고수익 보장 및 투자전문가 사칭 주의 (원금 보장 불가)<br>
+                     3. <b>노쇼 사기</b>: 관공서·대기업 사칭 대량 예약 후 물품 대리 구매 유도<br>
+                    ※ 의심 신고 및 문의: <b>1394</b> 또는 <b>112</b><br><br>
+              <div class="mt-5 rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                <img src="voice.jpg" alt="모르는 번호, 수상한 내용「어서끊자!」" class="w-full h-auto object-cover">
+              </div>
+              <p class="text-[11px] text-gray-500 mt-1.5 text-center">▲ 모르는 번호, 황당한 내용은「어서끊자!」</p>`
+            },
             {
                 type: '알림',
                 title: '자영업자 타겟 신종 노쇼(No-show) 사기',
